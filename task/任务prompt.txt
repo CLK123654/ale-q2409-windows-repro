@@ -1,0 +1,7 @@
+周三的边缘发布窗口要更新目录可读性检查，现有Job却把全部目录塞进一个Pod。坏分区会拖住整批，节点中断也跟业务失败混在同一套重试里。平台组要换掉这份旧清单。
+
+indexed_release_policy.json记录失败策略，catalog_partitions.csv是当前目录范围，release_capacity.csv给出窗口并发和闸门覆盖要求。starter/job.yaml保留现状，停用目录不用带进新批次。
+
+新Job按启用目录使用Indexed模式，完成数与并发从清单推导。永久不可读只结束对应索引，DisruptionTarget不占业务失败预算，其他退出受逐索引回退限制。核心市场达到容量表要求时，由successPolicy结束长尾等待。
+
+Kustomize工程和发布清单放进output，对象清单能回到合同和目录范围，policy_review.csv记录Job字段与策略。change_note.md留给平台组安排评审和回滚，维护窗值班随后接手现场应用与运行观察。

@@ -1,0 +1,7 @@
+操作系统： Windows11。
+
+主软件为Kubernetes客户端kubectl.exe1.32.6，使用内置Kustomize构建Indexed Job发布清单并在客户端解析对象。PowerShell7负责命令调用，Python3.12负责读取CSV并整理Markdown。
+
+安装工具时可以联网。操作者需要输入读取权限和本地output写入权限。CPU和内存需满足Kustomize构建、对象解析及分区记录整理，GPU不参与；磁盘需容纳输入、渲染清单和结果表。kubectl及Python入口设置有限超时，超时后停止当前交付。
+
+主要风险是把停用目录带入索引范围、混淆DisruptionTarget与业务失败，或让successPolicy覆盖错误的市场分区。

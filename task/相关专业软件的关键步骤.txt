@@ -1,0 +1,7 @@
+1.读取目录清单和窗口容量，得到启用目录数、并发值、核心市场范围及覆盖要求。
+2.对照indexed_release_policy.json调整Job身份、固定镜像、Indexed模式和索引下传。
+3.设置restartPolicy、逐索引回退、失败索引上限，并按永久错误与DisruptionTarget配置podFailurePolicy。
+4.把核心市场分区和最低成功数写入successPolicy，使字段来自目录与容量清单。
+5.编写Namespace、ConfigMap、Job和kustomization.yaml，运行kubectl kustomize output/bundle生成发布清单。
+6.使用kubectl patch --local解析构建对象，整理objects.csv和policy_review.csv。
+7.核对清单、策略报告与change_request.txt，把评审范围、回滚材料和维护窗后续工作写入change_note.md。
